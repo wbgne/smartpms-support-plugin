@@ -66,10 +66,10 @@ The feature-request script reads `SLACK_BOT_TOKEN` from the environment first, t
 
 ```bash
 cd "/Users/wbgne/Projects/MCP Brainrot/plugins"
-git pull --rebase && git add -A && git commit -m "team-rules: <cosa cambia>" && git push
+git add -A && git commit -m "team-rules: <cosa cambia>" && git pull --rebase && git push
 ```
 
-Pull first: pull requests merged on GitHub aren't in this local copy until you pull, and the push is refused without them.
+Pull before pushing: pull requests merged on GitHub aren't in this local copy until you pull, and the push is refused without them.
 
 ### Reviewing colleagues' pull requests
 
