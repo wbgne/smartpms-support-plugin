@@ -141,6 +141,7 @@ Fatti chiariti dal team su casi reali. Usali per non proporre cause o soluzioni 
 - Per distinguerli dagli scarti veri guarda il codice dell'ultima RicevutaScarto (00306/00200/00324 = da correggere).
 - Gestione: il cliente conferma su Fatture e Corrispettivi, poi il supporto riallinea lo stato dal campo stato del supporto nel PMS. Stato da ripristinare = ultimo esito prima del 00404 (6 Consegnata, 8 Mancata consegna); se c'era solo 5, esito dal portale AdE (di norma XXXXXXX → 6, 0000000 → 8).
 - `smartpms_list_company_documents` si ferma a 100 documenti al giorno: per i giorni pieni filtra per stato Errore nella lista del PMS.
+- Per rispondere al cliente basta confermare il doppio invio su **una** fattura. L'elenco completo con lo stato da ripristinare serve solo al riallineamento, che aspetta comunque la conferma del cliente: ricavalo allora dal filtro Errore del PMS, non con una scansione dei log di tutte le fatture.
 
 ## Self check-in e serrature (IoT / Nuki)
 

@@ -42,6 +42,8 @@ I tool sono deferred: caricali con `ToolSearch` (`select:nome1,nome2`) in un'uni
    - Marketplace: `check_marketplace_setup`, `check_marketplace_reservation`, `list_marketplace_dispatches`
    - Check-in online / compliance: `check_compliance`
    - Modifica date o camera di una prenotazione (preventivo, senza scrivere): `quote_reservation_change`
+
+   Problema su molti documenti/entità: parti dal passaggio più economico. Conferma il meccanismo su **un** caso (log di una sola entità), poi ricava l'elenco dalla UI del PMS nel browser integrato (es. Contabilità > Documenti Fiscali filtrato per stato Errore) o dal ticket, dove il cliente spesso elenca i numeri. Scansioni esaustive con subagent (decine di log da 50-150k caratteri) solo quando serve davvero la lista completa per agire, mai prima della risposta al cliente, e dopo aver detto all'agente quanto costa.
 5. **Codice**: `search_code` su classi/costanti concrete, poi `get_file_content` intorno al match. Verifica la regola esatta, non dedurla.
 6. **Documentazione**: `searchDocs` con le parole del cliente, poi `getDoc`: separa "comportamento previsto/documentato" da "bug". Controlla anche `references/product-knowledge.md`.
 7. **Conclusione**: causa radice, linea temporale, evidenze (ID, orari, file:riga), cosa è confermato e cosa resta da verificare, azioni per il cliente e per il team tecnico.
