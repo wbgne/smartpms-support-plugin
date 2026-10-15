@@ -59,6 +59,23 @@ Manual install for a single person (same result, no managed settings), from a te
 /plugin install smartpms-support@smartness-support
 ```
 
+## C. Slack bot token for everyone (managed settings)
+
+The feature-request script reads `SLACK_BOT_TOKEN` from the environment first, then from `~/.config/smartpms/slack.env` as a fallback. To spare each agent that file, an admin sets the token once in the **server-managed settings** (claude.ai admin console → Claude Code → Managed settings), next to anything already there (e.g. plan B):
+
+```json
+{
+  "env": {
+    "SLACK_BOT_TOKEN": "xoxb-…"
+  }
+}
+```
+
+- Type the real token **only** in the admin console. Never commit it to this repo, paste it in a chat, or put it in a ticket.
+- Every agent can read the value on their own machine (same exposure as the per-agent file today). If someone leaves the team or the token leaks: rotate it in Slack, then update this one value.
+- Clients get the new value at their next app start. Check on one machine with `[ -n "$SLACK_BOT_TOKEN" ] && echo ok` (prints ok, never the token).
+- Agents not covered by the managed settings keep using the file (see the plugin README, setup step 4).
+
 ## Releasing a change
 
 ```bash

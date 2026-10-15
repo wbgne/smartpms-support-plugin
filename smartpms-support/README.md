@@ -21,7 +21,11 @@ Le regole del team (stati, campi CB, escalation, feature request, politiche vers
    - Atlassian (Jira, progetto CIAOB: ricerca bug esistenti e nuovi bug per gli sviluppatori)
    - HubSpot (task e note, solo in inglese), se lo usi
 3. **Modello**: nel selettore del modello dell'app imposta come predefiniti **Opus 5.5** ed effort **Medium**.
-5. **Token Slack** per le feature request: chiedi il token del bot del team al responsabile del supporto e salvalo così (mai in chat):
+4. **Token Slack** per le feature request: di norma non devi fare niente, il token del bot del team arriva già nell'ambiente (`SLACK_BOT_TOKEN`) dalle impostazioni gestite dell'organizzazione. Verifica (stampa solo sì/no, mai il token):
+   ```bash
+   [ -n "$SLACK_BOT_TOKEN" ] && echo "token presente" || echo "token mancante"
+   ```
+   Solo se manca: chiedi il token al responsabile del supporto e salvalo così (mai in chat):
    ```bash
    mkdir -p ~/.config/smartpms && printf 'SLACK_BOT_TOKEN=%s\n' 'xoxb-…' > ~/.config/smartpms/slack.env && chmod 600 ~/.config/smartpms/slack.env
    ```
