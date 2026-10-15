@@ -51,7 +51,7 @@ On **one colleague's** machine: do step A, check the skill is listed, then push 
 
 The feature-request script reads `SLACK_BOT_TOKEN` from the environment first, then from `~/.config/smartpms/slack.env`.
 
-- The token is in **1Password**: vault `Support copilot`, item `support-copilot - Slack`, field `credential` (the same item the Support Copilot deploy reads via `deploy/sync-secrets.sh`). Each agent copies it from there into the file (plugin README, setup step 4). Never in this repo, a chat or a ticket.
+- The token is in **1Password**: vault `Shared`, item `support-copilot - Slack`, field `credential`. It's a copy of the item the Support Copilot deploy reads from vault `Support copilot` (`deploy/sync-secrets.sh`): same token, so when you rotate it update both items. Each agent copies it from there into the file (plugin README, setup step 4). Never in this repo, a chat or a ticket.
 - Optional, if a claude.ai admin manages settings for the team: set it once there instead, and agents can skip the file:
 
   ```json
@@ -59,7 +59,7 @@ The feature-request script reads `SLACK_BOT_TOKEN` from the environment first, t
   ```
 
   Type the real value only in the admin console.
-- If someone leaves the team or the token leaks: rotate it in Slack, update 1Password (and the managed setting if used), and tell agents to update their file.
+- If someone leaves the team or the token leaks: rotate it in Slack, update both 1Password items (Shared and Support copilot) and the managed setting if used, and tell agents to update their file.
 - Check on a machine without printing it: `[ -n "$SLACK_BOT_TOKEN" ] || [ -f ~/.config/smartpms/slack.env ] && echo ok`.
 
 ## Releasing a change

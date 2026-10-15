@@ -21,7 +21,7 @@ Le regole del team (stati, campi CB, escalation, feature request, politiche vers
    - Atlassian (Jira, progetto CIAOB: ricerca bug esistenti e nuovi bug per gli sviluppatori)
    - HubSpot (task e note, solo in inglese), se lo usi
 3. **Modello**: nel selettore del modello dell'app imposta come predefiniti **Opus 5.5** ed effort **Medium**.
-4. **Token Slack** per le feature request: è in **1Password**, vault **Support copilot**, voce `support-copilot - Slack`, campo `credential` (mai in chat, nei ticket o nel repo; se non vedi la voce, chiedila al responsabile del supporto). Copialo da lì e salvalo con questo comando in un terminale: lo chiede senza mostrarlo e non resta nella cronologia.
+4. **Token Slack** per le feature request: è in **1Password**, vault **Shared**, voce `support-copilot - Slack`, campo `credential` (mai in chat, nei ticket o nel repo; se non vedi la voce, chiedila al responsabile del supporto). Copialo da lì e salvalo con questo comando in un terminale: lo chiede senza mostrarlo e non resta nella cronologia.
    ```bash
    mkdir -p ~/.config/smartpms && read -rs "T?Token Slack: " && (umask 077; printf 'SLACK_BOT_TOKEN=%s\n' "$T" > ~/.config/smartpms/slack.env) && unset T && echo salvato
    ```
