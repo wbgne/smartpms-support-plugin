@@ -122,6 +122,7 @@ Procedura:
 ## Insidie note
 
 - `smartpms_diagnose_guest_messages` può segnalare "reservation_group assente / PORTAL non viene creato" anche quando la prenotazione ha un gruppo e la chat funziona: verifica con `get_reservation` (include `reservation_group`) e con i messaggi realmente presenti.
+- `user_logged` delle connessioni Octorate nei tool Smarty è la copia del PMS e può risultare `true` con l'autorizzazione Airbnb scaduta: lo stato reale si legge con `read_octorate` → `retrieveConnectionDetail` usando l'ID Octorate della connessione (`portalConnectionId` da `getConnectionsV3`), non l'ID del PMS.
 - `smartpms_analyze_overbooking` segnala `channel_full_sync_disattivo` come anomalia: è la configurazione standard, ignoralo (vedi `references/product-knowledge.md`).
 - `has_credit_card_meta` è false anche con una carta a garanzia SECOM e il `ccs_token` non compare nei log: non concludere mai "nessuna carta" da Smarty (vedi `references/product-knowledge.md`).
 - `smartpms_check_rate_setup` non mostra le righe di prezzo per ospite con amount 0 (quindi nemmeno quelle disattivate) né l'ora della chiusura automatica.
