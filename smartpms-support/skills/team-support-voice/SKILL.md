@@ -51,4 +51,4 @@ Zendesk converts the reply from Markdown and adds the agent's signature on its o
 
 ## Suggesting changes
 
-This skill is shared by the whole team through the `smartpms-support` plugin: don't edit the installed copy, and don't rewrite it after feedback on a single draft. If the feedback should apply to everyone (a phrase to avoid, a formatting rule), propose it with the plugin procedure in the `smartpms-troubleshooting` skill ("Proporre regole o correzioni al plugin"): Claude opens a pull request. Never put client names, reservation numbers or other identifying details in it.
+This skill is shared by the whole team through the `smartpms-support` plugin: don't edit the installed copy, and don't rewrite it after feedback on a single draft. If the feedback should apply to everyone (a phrase to avoid, a formatting rule), propose it with the `proporre-regola` skill of this plugin: Claude opens a pull request. Never put client names, reservation numbers or other identifying details in it.

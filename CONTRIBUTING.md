@@ -8,9 +8,12 @@ Tutti i file sono in `smartpms-support/skills/smartpms-troubleshooting/`:
 
 | File | Cosa contiene |
 |---|---|
-| `references/team-rules.md` | Regole e procedure del team: risposte, stati, campi CB, escalation L2, Jira, feature request, politiche verso il cliente |
-| `references/product-knowledge.md` | Fatti di prodotto confermati (comportamenti del PMS, del channel manager, di SmartPay…) |
-| `SKILL.md` | Il metodo di indagine: passi, tool da usare, insidie note |
+| `references/team-rules.md` | Regole sempre valide: risposte, stati, campi CB, chi se ne occupa (L1, L2, Jira, feature request), politiche verso il cliente |
+| `references/azioni.md` | Procedure per agire: escalation L2 e side conversation, Jira, feature request su Slack, Payload, HubSpot, casi Zendesk particolari |
+| `SKILL.md` | Il metodo di indagine: passi, tool da usare, insidie dei tool |
+| `references/browser-interno.md` | Tecniche di Claude nel browser integrato (PMS superadmin) |
+
+I **fatti di prodotto** (comportamenti del PMS, del channel manager, di SmartPay, casi noti) non vanno nel plugin ma in **Payload**: chiedi a Claude di proporre l'aggiornamento del playbook o della guida durante il ticket.
 
 Scrivi in italiano, nello stile del testo che c'è già, nella sezione giusta.
 

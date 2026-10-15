@@ -12,5 +12,5 @@
 
 ## Controlli
 
-- [ ] Ho scritto in italiano, nella sezione giusta (`team-rules.md` = procedure, `product-knowledge.md` = fatti di prodotto, `SKILL.md` = metodo di indagine)
+- [ ] Ho scritto in italiano, nella sezione giusta (`team-rules.md` = regole sempre valide, `azioni.md` = procedure per agire, `SKILL.md` = metodo di indagine; i fatti di prodotto vanno in Payload, non qui)
 - [ ] Nessun token, password o dato personale di clienti/ospiti

@@ -7,9 +7,10 @@ Plugin del team Support SmartPMS per Claude (app desktop, tab Code).
 | Skill | A cosa serve |
 |---|---|
 | `smartpms-support:smartpms-troubleshooting` | Indagine su un ticket o un problema cliente: ticket → cliente → log → dati → codice → doc, con bozza di risposta, escalation L2, feature request e bozza Payload secondo le regole del team. Parte da sola quando descrivi un problema di un cliente o citi un ticket. |
+| `smartpms-support:proporre-regola` | Proporre una regola nuova o una correzione per il team (diventa una pull request) oppure un fatto di prodotto (va in Payload). Parte quando dici "aggiungi questa regola" o "questa regola è sbagliata". |
 | `smartpms-support:team-support-voice` | Voce del team per le risposte ai clienti (Zendesk email, chat, follow-up), in italiano e inglese. La usa `smartpms-troubleshooting` per la bozza di risposta; puoi richiamarla anche da sola per scrivere o riscrivere una risposta. |
 
-Le regole del team (stati, campi CB, escalation, feature request, politiche verso il cliente) sono in `skills/smartpms-troubleshooting/references/team-rules.md`; i fatti di prodotto confermati in `references/product-knowledge.md`.
+Le regole del team (stati, campi CB, escalation, feature request, politiche verso il cliente) sono in `skills/smartpms-troubleshooting/references/team-rules.md`; le procedure per agire (side conversation, Jira, feature request, Payload, HubSpot) in `references/azioni.md`. I fatti di prodotto (comportamenti del PMS, casi noti, bug aperti) sono in Payload: la skill li cerca a ogni ticket.
 
 ## Setup (una volta sola)
 
