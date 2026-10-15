@@ -66,8 +66,14 @@ The feature-request script reads `SLACK_BOT_TOKEN` from the environment first, t
 
 ```bash
 cd "/Users/wbgne/Projects/MCP Brainrot/plugins"
-git add -A && git commit -m "team-rules: <cosa cambia>" && git push
+git pull --rebase && git add -A && git commit -m "team-rules: <cosa cambia>" && git push
 ```
+
+Pull first: pull requests merged on GitHub aren't in this local copy until you pull, and the push is refused without them.
+
+### Reviewing colleagues' pull requests
+
+Colleagues propose changes with pull requests from their own fork (`CONTRIBUTING.md`); nobody else has write access, so nothing reaches `main` until you merge. Review on github.com (Pull requests tab), or ask Claude here to list them, show the diff and merge on your ok (`gh pr list` / `gh pr diff` / `gh pr merge` with the `wbgne` login). Before merging, check: right file and section, Italian, no tokens or customer personal data (the repo and its pull requests are public).
 
 The push goes to `wbgne` over HTTPS with that account's `gh` login (a credential helper set only in this repo's `.git/config`; the SSH key on this Mac belongs to `wbgne59100`). Clients pick the change up at their next app start. Before pushing, validate:
 

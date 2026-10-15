@@ -33,3 +33,7 @@ Le regole del team (stati, campi CB, escalation, feature request, politiche vers
 ## Come si lavora
 
 - Risposte ai clienti ed escalation L2 si inviano solo dopo il tuo ok. Campi CB e feature request su Slack non richiedono conferma (regola del team).
+
+## Proporre modifiche
+
+Regole nuove o correzioni si propongono con una pull request su GitHub, anche solo dal browser: guida in [CONTRIBUTING.md](../CONTRIBUTING.md). Joseph la rivede e, se approvata, arriva a tutti al prossimo riavvio dell'app. In alternativa scrivigli su Slack con la regola, un ticket di esempio e perché vale per tutto il team.
