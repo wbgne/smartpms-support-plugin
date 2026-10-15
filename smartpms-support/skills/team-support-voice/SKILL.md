@@ -15,7 +15,7 @@ The guidance below was distilled from real client replies written by the team (m
 - **Apologize once, then act.** When there's been an inconvenience, one short sincere line ("Scusa per il disagio", "Mi dispiace per il disservizio"), then straight into what we're doing about it. Never stack apologies.
 - **Say what you did, in first person, concretely.** A lead-in like "Ecco cosa ho fatto per te:" followed by the actual actions ("Ho verificato che...", "Ho forzato manualmente..."). Own the work instead of only pointing at "il team".
 - **Remove friction for the client.** When it's genuinely faster, offer to do the fiddly step ourselves: "Se preferisci, dimmi pure l'orario esatto e lo inserisco io per te in un attimo!"
-- **Be plain about limits.** Say clearly when something is out of our hands ("non riusciamo a verificarlo direttamente dal nostro lato", "I can't guarantee if or when this will be implemented") rather than softening it into a vague promise.
+- **Be plain about limits.** Say clearly when something is out of our hands ("non riusciamo a verificarlo direttamente dal nostro lato", "I can't guarantee if or when this will be implemented") rather than softening it into a vague promise. Never promise dates, fixes or features we can't confirm.
 - **Ask narrow questions.** When we need information, ask 1 or 2 specific, answerable questions ("Che errore visualizzavano gli ospiti al momento del pagamento? Hai degli screenshot?"), never a vague "fammi sapere".
 - **Close on an active, available note.** "Ti tengo aggiornato/a non appena ho novità", "Resto in attesa, un saluto!", "Rimango a disposizione". Reassurance that we're still on it, not a flat "regards".
 - **Rhythm.** Mid-length, matter-of-fact sentences (around 14 words on average), mixing short direct lines with one or two longer explanatory ones. Not clipped, not rambling.
@@ -25,43 +25,28 @@ The guidance below was distilled from real client replies written by the team (m
 
 Match gender agreement to the real people involved: the agent's own forms ("lo farò io stesso/stessa") and the client's ("ti tengo aggiornato/aggiornata"). If you don't know, ask the agent or rephrase neutrally ("ti aggiorno appena ho novità").
 
+### Never
+
+- Em dashes.
+- Corporate filler: "leverage", "delve", "circle back", "seamless", "utilize", "non esitare a contattarci".
+- "Not X, but Y" constructions.
+
 ## Formatting in Zendesk
 
+Zendesk converts the reply from Markdown and adds the agent's signature on its own.
+
+- **Sign-off:** end with the active line from above, then "Un cordiale saluto," ("Kind regards," in English) and nothing else. Never write a name, role or contact block: Zendesk appends the agent's signature (name, role, contacts, banner), so it would appear twice.
+- **No numbered lines:** never start a line with "1.", "2.", "3.": Zendesk turns them into one numbered list that restarts at 1 or swallows the bullets below. For steps use "-" bullets or labels like "Passo 1:"; for section titles use a **bold** line on its own, with a blank line before and after. One list type per block.
 - **Steps:** direct imperative verbs (Vai, Clicca, Seleziona, Apri, Controlla / Go to, Click, Select).
-- **Never start lines with "1.", "2.", "3."**: the Zendesk editor turns them into lists that restart at 1 every time. Use dashes, or labels like "Passo 1 –", "Punto 2 –".
 - **Bold** sparingly, only for something the client must not get wrong (e.g. **non eliminare la tariffa**), not for general emphasis.
-- **Sign-off:** quick chat-style replies can end on the reassurance line with no signature. Longer or first-contact emails close with:
-
-  [Nome Cognome]
-  Customer Support
-  support@smartpricing.it / support@ciaobooking.com
-
-  Leave the name as a placeholder unless the agent has told you theirs.
-
-## Dos and don'ts
-
-**Do**
-- Greet the person first.
-- One apology line when warranted, then the fix.
-- List concrete actions already taken before asking anything of the client.
-- Offer to do the step for them when that's faster.
-- End with a specific next step or an active "I'm on it" line.
-
-**Don't** (these are the line, check every draft against them)
-- No em dashes.
-- No corporate filler: "leverage", "delve", "circle back", "seamless", "utilize", "non esitare a contattarci".
-- No generic "let me know if you have any questions!" closer: ask the specific thing or give the next step.
-- No stacked apologies.
-- No "not X, but Y" constructions.
-- No promises of dates, fixes or features we can't confirm.
+- **No text in double curly braces** (e.g. the technical name of a template variable): Zendesk reads it as one of its placeholders and deletes it, and the comment can't be edited afterwards. Name the field as the client sees it in the "Campi dinamici" menu (e.g. "PIN accesso").
 
 ## Applying the voice
 
-- Identify the channel (email vs chat) and language, and match the client's language.
-- Draft in this voice, then self-check against the don'ts and the Zendesk formatting rules before showing it.
-- If the agent has their own personal writing-style skill, use that for personal quirks and this one for team conventions; when they conflict, the team conventions above win on formatting and the don'ts.
-- Never copy client names, reservation numbers, or other identifying details into this skill.
+- Match the client's language and the channel (email or chat).
+- Draft in this voice, then check it against "Never" and the Zendesk formatting rules before showing it.
+- If the agent has their own personal writing-style skill, use that for personal quirks and this one for team conventions; when they conflict, this skill wins on formatting and on "Never".
 
 ## Suggesting changes
 
-This file is shared by the whole team, so don't rewrite it on your own after feedback on a single draft. If an agent's feedback points to something that should apply to everyone (a new phrase to avoid, a formatting rule), suggest the exact line to add and tell them to pass it to whoever maintains the team skill.
+This skill is shared by the whole team through the `smartpms-support` plugin: don't edit the installed copy, and don't rewrite it after feedback on a single draft. If the feedback should apply to everyone (a phrase to avoid, a formatting rule), propose it with the plugin procedure in the `smartpms-troubleshooting` skill ("Proporre regole o correzioni al plugin"): Claude opens a pull request. Never put client names, reservation numbers or other identifying details in it.
