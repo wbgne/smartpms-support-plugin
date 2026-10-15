@@ -36,4 +36,4 @@ Le regole del team (stati, campi CB, escalation, feature request, politiche vers
 
 ## Proporre modifiche
 
-Regole nuove o correzioni si propongono con una pull request su GitHub, anche solo dal browser: guida in [CONTRIBUTING.md](../CONTRIBUTING.md). Joseph la rivede e, se approvata, arriva a tutti al prossimo riavvio dell'app. In alternativa scrivigli su Slack con la regola, un ticket di esempio e perché vale per tutto il team.
+Regole nuove o correzioni si propongono con una pull request su GitHub. Il modo più semplice è chiederlo a Claude ("aggiungi al plugin questa regola: …"): ti mostra la modifica e apre lui la pull request. In alternativa dal browser: guida in [CONTRIBUTING.md](../CONTRIBUTING.md). Joseph la rivede e, se approvata, arriva a tutti al prossimo riavvio dell'app. In alternativa scrivigli su Slack con la regola, un ticket di esempio e perché vale per tutto il team.

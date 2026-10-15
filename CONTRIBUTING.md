@@ -14,7 +14,13 @@ Tutti i file sono in `smartpms-support/skills/smartpms-troubleshooting/`:
 
 Scrivi in italiano, nello stile del testo che c'è già, nella sezione giusta.
 
-## Come proporre una modifica (dal browser, senza installare niente)
+## Il modo più semplice: chiedilo a Claude
+
+In una sessione con il plugin installato scrivi per esempio _"Aggiungi al plugin questa regola: …"_ oppure _"La regola su … è sbagliata, va corretta così: …"_. Claude sceglie il file e la sezione, ti mostra la modifica e, dopo il tuo ok, apre lui la pull request.
+
+La prima volta serve collegare il tuo account GitHub: Claude ti chiederà di eseguire `gh auth login` in un terminale (login dal browser, una volta sola). Se non hai un account GitHub, Claude ti prepara il testo da mandare a Joseph su Slack.
+
+## In alternativa: dal browser, senza installare niente
 
 1. Serve un account GitHub (gratuito).
 2. Apri il file su GitHub, per esempio [team-rules.md](smartpms-support/skills/smartpms-troubleshooting/references/team-rules.md), e clicca la matita ✏️ in alto a destra.

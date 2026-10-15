@@ -1,6 +1,6 @@
 ---
 name: smartpms-troubleshooting
-description: Indagine su ticket e problemi dei clienti SmartPMS (messaggi automatici, prenotazioni, channel manager, tariffe, pagamenti, self check-in, fiscale…). Usala ogni volta che l'utente descrive un problema di un cliente del PMS, cita un ID (template, prenotazione, struttura, ticket) o chiede "come mai / perché" su un comportamento del prodotto. Combina Smarty MCP (dati live), Smartness MCP Gateway (codice e ticket analizzati), Composio/Zendesk (ticket originale) e Payload MCP (documentazione).
+description: Indagine su ticket e problemi dei clienti SmartPMS (messaggi automatici, prenotazioni, channel manager, tariffe, pagamenti, self check-in, fiscale…). Usala ogni volta che l'utente descrive un problema di un cliente del PMS, cita un ID (template, prenotazione, struttura, ticket) o chiede "come mai / perché" su un comportamento del prodotto. Usala anche quando l'utente vuole aggiungere o correggere una regola del team o un fatto di prodotto di questa skill. Combina Smarty MCP (dati live), Smartness MCP Gateway (codice e ticket analizzati), Composio/Zendesk (ticket originale) e Payload MCP (documentazione).
 ---
 
 # Troubleshooting SmartPMS
@@ -93,6 +93,31 @@ Se la risorsa è cambiata nel frattempo il token viene rifiutato: rifai il `prep
 - Creazione/modifica/riattivazione di un template rigenera solo prenotazioni **future e confermate** (`RefreshReservationMessages`, `start_date >= today`).
 - `DeleteReservationMessages` cancella solo messaggi non inviati.
 - Email della tab Messaggi e dei template (`api/Jobs/Messages/SendMessage.php`, `prepareMailData`): **From sempre `contact@ciaobooking.com`** (indirizzo della piattaforma, `config('mail.from.address')`), **Reply-To = email della struttura** (o il mittente scelto nella tab). L'SMTP della struttura (`mail_host`…) si usa solo se configurato. Per gli ospiti Expedia/Booking con email alias: il canale inoltra solo da mittenti registrati, quindi conta il From e non l'email della struttura.
+
+## Proporre regole o correzioni al plugin
+
+Quando l'agente dice "aggiungi questa regola", "questa regola è sbagliata" o durante un caso emerge qualcosa che vale per tutto il team, la modifica si propone con una **pull request** sul repository pubblico `wbgne/smartpms-support-plugin`; la approva il responsabile del supporto.
+
+- **Non modificare mai i file installati della skill** (`${CLAUDE_SKILL_DIR}`, `~/.claude/plugins/`): vengono sovrascritti al prossimo aggiornamento e non arrivano agli altri.
+- Se la cartella di lavoro contiene già `plugins/smartpms-support` con un `CLAUDE.md` che spiega come pubblicare (è la postazione del responsabile), segui quelle istruzioni invece di questa procedura.
+- Le regole personali (preferenze del singolo agente, liste legate a un solo ticket) non vanno nel plugin.
+
+Procedura:
+1. Scegli file e sezione: procedure e politiche → `references/team-rules.md`; fatti di prodotto confermati → `references/product-knowledge.md`; metodo di indagine → `SKILL.md`. Scrivi in italiano, nello stile del testo vicino. Mai token, password o dati personali di clienti/ospiti: il repository e le pull request sono pubblici (negli esempi usa il numero del ticket).
+2. Controlla `gh auth status`. Se `gh` non è installato o non è collegato, di' all'agente di eseguire in un terminale `gh auth login` (GitHub.com → HTTPS → login dal browser; il login lo fa lui, non tu). Se non ha o non vuole un account GitHub, prepara invece il testo da mandare al responsabile del supporto su Slack (regola, ticket di esempio, perché vale per tutti) e fermati qui.
+3. Lavora in una cartella temporanea, partendo sempre dall'ultima versione del team:
+   ```bash
+   D=$(mktemp -d) && cd "$D" && gh repo fork wbgne/smartpms-support-plugin --clone --remote && cd smartpms-support-plugin
+   git fetch upstream && git checkout -b regola-<breve-descrizione> upstream/main
+   ```
+4. Applica la modifica e mostra all'agente il diff (`git diff`) e il testo della pull request. **Chiedi conferma prima di aprirla**: è pubblica.
+5. Dopo il sì:
+   ```bash
+   git add -A && git commit -m "team-rules: <cosa cambia>" && git push -u origin HEAD
+   gh pr create --repo wbgne/smartpms-support-plugin --title "<titolo breve>" --body-file <file>
+   ```
+   Il corpo segue il modulo del repository: `## Regola o correzione`, `## Ticket di esempio`, `## Perché vale per tutto il team`.
+6. Dai all'agente il link della pull request: la modifica arriva a tutti solo dopo l'approvazione, al riavvio dell'app.
 
 ## Insidie note
 
