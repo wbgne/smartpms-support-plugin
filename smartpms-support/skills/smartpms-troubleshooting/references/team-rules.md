@@ -15,7 +15,7 @@ Regole operative valide per tutti gli agenti. Leggile prima di preparare rispost
   - `pending` solo se aspettiamo davvero un dato o una risposta del cliente per proseguire (es. "in che provincia è la struttura?").
   - **Pending Internal** (`custom_status_id: 15294614941468`) se sul ticket c'è un'escalation interna aperta (L2, Finance, Activations, Octorate) o un bug Jira collegato. Con il Pending semplice (`13500829714076`) il ticket si chiude da solo dopo qualche giorno mentre aspettiamo ancora il team interno.
 - Quando chiedi conferma per l'invio, indica anche lo stato e i valori CB che applicherai.
-- **La bozza deve essere visibile all'agente.** Nell'app desktop di Claude il testo scritto nello stesso messaggio del riquadro finale con domanda e pulsanti (`wrap_up` con `ask`) non arriva all'agente: vede solo il riquadro e approverebbe un testo mai letto. Quando c'è una bozza da approvare (risposta al cliente, side conversation, Jira, Payload), chiudi con `wrap_up` senza `ask`, poi scrivi la bozza nel messaggio finale e chiedi conferma in testo.
+- **La bozza deve essere visibile all'agente**: per intero nel messaggio finale, mai solo nel riquadro di fine turno (vedi `SKILL.md`, passo 7).
 - Una risposta pubblica riporta il ticket in Aperto: imposta lo stato **dopo** la risposta e poi verificalo. `ZENDESK_GET_ZENDESK_TICKET_BY_ID` non restituisce `custom_status_id`: rileggi con `ZENDESK_SEARCH_ZENDESK` oppure GET `/api/v2/tickets/{id}.json` via proxy_execute.
 - `ZENDESK_UPDATE_ZENDESK_TICKET` a volte non applica il `custom_status_id` passato da solo come campo: se rileggendo il ticket lo stato non è cambiato, rimandalo dentro `data` insieme a `status` (es. `data: {status: "pending", custom_status_id: 15294614941468}`).
 
