@@ -11,10 +11,11 @@ The guidance below was distilled from real client replies written by the team (m
 
 ## How we write
 
-- **Open with the person, not the problem.** "Ciao [Nome], come stai?" / "Hi [Name]!" even mid-troubleshooting or when the news isn't great.
+- **Open with the person, not the problem.** "Ciao [Nome], come stai?" / "Hi [Name]!" even mid-troubleshooting. If the client is upset or the case is urgent (a fine, a deadline, lost bookings), just "Ciao [Nome]," / "Hi [Name],": no "come stai?".
 - **Apologize once, then act.** When there's been an inconvenience, one short sincere line ("Scusa per il disagio", "Mi dispiace per il disservizio"), then straight into what we're doing about it. Never stack apologies.
 - **Say what you did, in first person, concretely.** A lead-in like "Ecco cosa ho fatto per te:" followed by the actual actions ("Ho verificato che...", "Ho forzato manualmente..."). Own the work instead of only pointing at "il team".
-- **Remove friction for the client.** When it's genuinely faster, offer to do the fiddly step ourselves: "Se preferisci, dimmi pure l'orario esatto e lo inserisco io per te in un attimo!"
+- **Offer to act only where the client can't.** Offer to do a step ourselves only when it matches something the client can't do on their own (e.g. a setting that only we can change from our side). Don't offer to do work the client can do in the gestionale, such as entering guest data or changing their own settings: give them the steps instead.
+- **Use the client's words.** Say "gestionale", not "PMS", and name menus and fields as the client sees them; no internal jargon (logs, tool or table names, internal IDs). Do include the reservation ID or number when it helps the client find the booking.
 - **Be plain about limits.** Say clearly when something is out of our hands ("non riusciamo a verificarlo direttamente dal nostro lato", "I can't guarantee if or when this will be implemented") rather than softening it into a vague promise. Never promise dates, fixes or features we can't confirm.
 - **Ask narrow questions.** When we need information, ask 1 or 2 specific, answerable questions ("Che errore visualizzavano gli ospiti al momento del pagamento? Hai degli screenshot?"), never a vague "fammi sapere".
 - **Close on an active, available note.** "Ti tengo aggiornato/a non appena ho novità", "Resto in attesa, un saluto!", "Rimango a disposizione". Reassurance that we're still on it, not a flat "regards".
