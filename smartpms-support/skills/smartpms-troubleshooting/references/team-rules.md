@@ -78,6 +78,12 @@ Regole operative valide per tutti gli agenti. Leggile prima di preparare rispost
 - Non si fa al telefono: side conversation email a **reseller@octorate.com** dal ticket, con ID Octorate della struttura e HRS hotel ID. Poi il ticket va in Pending Internal.
 - Il cliente deve chiedere lui a HRS la connessione al channel manager Octorate: è l'unico punto in cui al cliente si nomina Octorate. Per il resto resta vago ("the activation has to be requested through our channel connection, we take care of it"). La mappatura camere/tariffe HRS la fa il Support dopo l'attivazione. Guida Payload: `ota-hrs-octorate-attivazione`.
 
+### Prenotazioni o cancellazioni OTA mai arrivate a Octorate
+
+- Se in Octorate (`read_octorate` → `findReservations` con `refer` = codice OTA) la prenotazione non ha ricevuto la modifica o la cancellazione fatta sul portale (es. cancellata su Expedia a giugno, in Octorate `CONFIRMED` fino a ottobre), il PMS non ha perso nulla: **niente L2**. Si apre una **side conversation email a reseller@octorate.com** dal ticket.
+- Contenuto: alloggio Octorate, hotel ID del portale, ID prenotazione Octorate e codice OTA, data della modifica sul portale, `status`/`cancelledBy`/`cancelledTime` letti in Octorate, orario di arrivo nel PMS (UTC). Chiedi se il portale ha inviato la modifica e cosa ha generato lo stato attuale. `html_body` formattato come per L2.
+- Il ticket va in **Pending Internal**. Al cliente non si nomina Octorate ("il collegamento con Expedia", "il fornitore del collegamento"); gli si dice se la disponibilità è già riallineata e gli si chiede, se serve, chi ha fatto la modifica sul portale.
+
 ## Bug per gli sviluppatori = Jira CIAOB
 
 - La side conversation serve per passare da L1 a L2. Quando un ticket è già in L2 (es. il figlio di una side conversation) e serve la correzione degli sviluppatori, si apre un **Bug** in Jira, progetto **CIAOB** ("Smartpms", issue type Bug id `10004`), con il connettore Atlassian (sito smartpricing-it.atlassian.net, cloudId `75d58419-ef23-4a75-a2ce-72550efcdca4`). Obbligatorio solo il summary; priorità e label (`backend`, `mychannel`…) facoltative.
