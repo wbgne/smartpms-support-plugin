@@ -104,7 +104,7 @@ Regole operative valide per tutti gli agenti. Leggile prima di preparare rispost
   ```
   Assignee email = email dell'assegnatario del ticket.
 - **Non serve la conferma del testo**: pubblica direttamente e riporta il testo nel resoconto finale. Chiedi solo se l'agente non ha ancora deciso se aprire o meno la feature request.
-- Si pubblica con il bot Slack del team tramite lo script `scripts/post-feature-requests.sh` di questa skill (vedi SKILL.md, passo 10). Il token è uguale per tutti e arriva nell'ambiente (`SLACK_BOT_TOKEN`) dalle impostazioni gestite dell'organizzazione; in mancanza, dal file `~/.config/smartpms/slack.env` dell'agente (permessi 600). **Non stampare mai il token, non leggere né modificare quel file** e non chiedere il token in chat.
+- Si pubblica con il bot Slack del team tramite lo script `scripts/post-feature-requests.sh` di questa skill (vedi SKILL.md, passo 10). Il token è uguale per tutti ed è nel vault 1Password del team Support; ogni agente lo salva nel file `~/.config/smartpms/slack.env` (permessi 600), oppure arriva nell'ambiente (`SLACK_BOT_TOKEN`) se l'organizzazione lo distribuisce nelle impostazioni gestite. **Non stampare mai il token, non leggere né modificare quel file** e non chiedere il token in chat.
 
 ## Aggiornamenti Payload
 
