@@ -1,0 +1,15 @@
+{
+  "name": "smartpms-support",
+  "displayName": "SmartPMS Support",
+  "description": "Troubleshooting dei ticket SmartPMS (ticket → cliente → log → dati → codice → doc) con le regole del team Support.",
+  "author": {
+    "name": "Joseph D'Apuzzo",
+    "email": "joseph.dapuzzo@smartpricing.it"
+  },
+  "keywords": [
+    "smartpms",
+    "zendesk",
+    "support",
+    "troubleshooting"
+  ]
+}

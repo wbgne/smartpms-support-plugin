@@ -1,0 +1,17 @@
+{
+  "name": "smartness-support",
+  "metadata": {
+    "description": "Plugin del team Support Smartness."
+  },
+  "owner": {
+    "name": "Smartness Support",
+    "email": "joseph.dapuzzo@smartpricing.it"
+  },
+  "plugins": [
+    {
+      "name": "smartpms-support",
+      "source": "./smartpms-support",
+      "description": "Troubleshooting dei ticket SmartPMS con le regole del team Support."
+    }
+  ]
+}
