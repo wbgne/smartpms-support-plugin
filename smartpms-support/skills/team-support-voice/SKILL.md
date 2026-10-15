@@ -46,6 +46,7 @@ Zendesk converts the reply from Markdown and adds the agent's signature on its o
 
 - Match the client's language and the channel (email or chat).
 - Draft in this voice, then check it against "Never" and the Zendesk formatting rules before showing it.
+- Show the full draft in your final chat message. In the Claude desktop app, end the turn with `wrap_up` without `ask`, then write the draft and ask for approval in plain text: with `ask`, the agent sees only the end-of-turn box and never reads the draft. Never leave a draft only in the box or only in a file.
 - If the agent has their own personal writing-style skill, use that for personal quirks and this one for team conventions; when they conflict, this skill wins on formatting and on "Never".
 
 ## Suggesting changes
