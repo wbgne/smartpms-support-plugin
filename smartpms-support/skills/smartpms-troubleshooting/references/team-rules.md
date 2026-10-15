@@ -45,7 +45,8 @@ Regole operative valide per tutti gli agenti, da leggere su ogni ticket. Le proc
 - **Restano a L1** (niente L2, niente Activations):
   - collegare un'azienda come sotto-azienda della principale (`parent_id`) e spostare una struttura da un'azienda all'altra: prepara il riepilogo (ID azienda, parent, struttura da/a, connessioni attive), l'agente esegue nel PMS, poi verifica con `smartpms_identify_customer` e Solved;
   - collegare un nuovo annuncio/struttura **Booking.com**: lo fa il cliente da solo da **MyChannel** nell'azienda (guida interna Payload `ota-booking-mychannel-attivazione`);
-  - prenotazioni con **Ospiti = 0**: si corregge il campo Adulti (FAQ della guida Payload `prenotazioni-scheda-gestione-tab`).
+  - prenotazioni con **Ospiti = 0**: si corregge il campo Adulti (FAQ della guida Payload `prenotazioni-scheda-gestione-tab`);
+  - tutto ciò che il cliente vede in piattaforma e corregge da solo: risposta con le istruzioni e Solved. Esempio: **account Smartpay limitato** da Stripe, con i requisiti visibili in Configurazione Smartpay (caso noto del playbook Payload `smartpay-contestazione-chargeback-ospite`). L2 solo se in piattaforma il problema non si vede o la correzione del cliente non basta.
 - **Prenotazioni duplicate** (doppio submit, stessa camera): non le cancelliamo e non lo proponiamo, né lo chiediamo al cliente. Nell'escalation L2 chiedi di "valutare e gestire il doppione"; al cliente indica quale prenotazione è corretta e quale il duplicato, e che se ne occupa il team tecnico. Non usare `smartpms_prepare_cancel_reservation` sui duplicati.
 
 ## Politiche verso il cliente
