@@ -1,6 +1,6 @@
 # Azioni del team Support SmartPMS
 
-Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo file prima di** creare una side conversation (L2, Finance, Activations, Smartpricing, Octorate), aprire un'issue Jira, pubblicare una feature request su Slack, scrivere in Payload o su HubSpot, o gestire uno dei casi Zendesk particolari in fondo. Le regole sempre valide sono in `team-rules.md`.
+Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo file prima di** creare una side conversation (L2, Finance, Activations, Smartpricing, Octorate), aprire un'issue Jira, pubblicare una feature request o scrivere a un collega su Slack, scrivere in Payload o su HubSpot, o gestire uno dei casi Zendesk particolari in fondo. Le regole sempre valide sono in `team-rules.md`.
 
 ## Escalation L2 = side conversation
 
@@ -70,6 +70,12 @@ Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo fi
   - Esito: una riga `OK` per messaggio. Lo script si ferma al primo errore e stampa la risposta di Slack (`not_in_channel` = invitare il bot nel canale; `channel_not_found` = mettere l'ID del canale in `SLACK_CHANNEL`; `invalid_auth` = token scaduto o revocato: avvisa il responsabile del supporto, che lo ruota e aggiorna 1Password; poi l'agente risalva il file).
   - **Non rieseguire lo script dopo un successo**: non è idempotente e duplica i messaggi.
   - Dopo la pubblicazione imposta Category `feature_requests`.
+
+## Messaggi ai colleghi su Slack
+
+- Quando l'agente chiede di scrivere a un collega con il bot del team, il messaggio va **sempre in un DM di gruppo con dentro anche l'agente che lo chiede** (bot + collega + agente), mai in un DM solo tra bot e collega: così l'agente vede la risposta e può continuare lui.
+- `conversations.open` con `users` = "IDcollega,IDagente" e `return_im: false`, poi `chat.postMessage` sul canale restituito. Token come per le feature request: mai stamparlo né leggere il file.
+- Testo in mrkdwn Slack (`*grassetto*`, `•` per gli elenchi). Mostralo all'agente e invia solo dopo il suo ok. **Non rieseguire dopo un `OK`**: non è idempotente.
 
 ## Aggiornamenti Payload
 
