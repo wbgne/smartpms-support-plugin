@@ -1,6 +1,6 @@
 # Azioni del team Support SmartPMS
 
-Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo file prima di** creare una side conversation (L2, Finance, Activations, Smartpricing, Octorate), aprire un'issue Jira, pubblicare una feature request o scrivere a un collega su Slack, scrivere in Payload o su HubSpot, o gestire uno dei casi Zendesk particolari in fondo. Le regole sempre valide sono in `team-rules.md`.
+Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo file prima di** creare una side conversation (L2, Finance, Activations, Smartpricing, Octorate), aprire un'issue Jira, pubblicare una feature request o scrivere a un collega su Slack, scrivere in Payload o su HubSpot, aggiornare il tempo lavorato del ticket, o gestire uno dei casi Zendesk particolari in fondo. Le regole sempre valide sono in `team-rules.md`.
 
 ## Escalation L2 = side conversation
 
@@ -91,6 +91,30 @@ Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo fi
 
 - Tutto ciò che si scrive su HubSpot (task, note, descrizioni) va **in inglese**, fin dalla prima bozza.
 - Le **contestazioni di fattura** dei clienti si gestiscono con un task all'account manager sulla company HubSpot del cliente, non con una side conversation al Finance.
+
+## Tempo lavorato su Zendesk
+
+- A fine gestione di ogni ticket il tempo che Claude ci ha lavorato in questa sessione **si somma** al tempo lavorato del ticket. **Non serve conferma** (salvo oltre i 120 minuti, sotto): riporta i valori nel resoconto finale.
+- **Quando**: è l'ultima scrittura sul ticket, dopo risposta, stato, campi CB, escalation e Payload. **Una volta sola per ticket e per sessione**: se la sessione torna più volte sullo stesso ticket il tempo si accumula e si scrive alla fine. Se dopo la scrittura l'agente chiede altro lavoro sullo stesso ticket, alla fine aggiungi solo il tempo successivo (`--since` = il valore `a=` del calcolo precedente), mai di nuovo quello già scritto.
+- **Calcolo** con lo script della skill (legge il transcript della sessione, non scrive nulla):
+  ```bash
+  python3 "${CLAUDE_SKILL_DIR}/scripts/tempo-sessione.py" --ticket 126140
+  ```
+  Conta solo il tempo attivo (ragionamento, tool, risposte) dal turno in cui il ticket compare per la prima volta fino ad ora: esclude l'attesa dei messaggi dell'agente e le pause oltre i 5 minuti (permessi, domande in attesa). Usa `secondi=`. Se nella stessa sessione hai lavorato anche ad altri ticket, delimita con `--since` / `--until` (`--list` mostra i turni con orario e messaggio).
+- **Lettura**: GET `/api/v2/tickets/{id}.json` via `proxy_execute`, poi `status` e, in `custom_fields`, **Total time spent (sec)** (id `13890878396828`). Il valore arriva come stringa e può essere vuoto o null (= 0).
+  - Ticket `closed`: è immutabile, **non scrivere nulla** e di' all'agente quanti minuti non sono stati registrati. I ticket `solved` si aggiornano normalmente.
+- **Nuovo totale = valore attuale + secondi della sessione.** Mai sovrascrivere il totale con i soli secondi della sessione. L'ordine di grandezza è di minuti, non di ore: se il totale da scrivere supera **7200 secondi (120 minuti)** fermati e chiedi conferma, perché oltre quella soglia il ticket esce dalla media dell'OKR e finisce nella card "Time to fix".
+- **Scrittura**: PUT `/api/v2/tickets/{id}.json` via `proxy_execute` con **soli campi**:
+  ```json
+  {"ticket": {"custom_fields": [
+    {"id": 13890878396828, "value": <nuovo totale>},
+    {"id": 13890878400668, "value": <secondi della sessione>}
+  ]}}
+  ```
+  **Time spent last update (sec)** (`13890878400668`) contiene solo i secondi di questa sessione, come fanno l'app Time Tracking e il composer del Support Copilot.
+- **Niente commento** nella update e nessuna nota interna per segnalare il tempo: su un ticket dei gruppi L1/L2 una nota fa scattare "Private Note Re-open" e riapre il ticket, una update di soli campi no.
+- **Verifica**: rileggi il ticket e controlla i due campi e che `status` / `custom_status_id` siano rimasti quelli di prima.
+- **Test** solo su ticket di prova con il tag `copilot_test` e l'agente come requester, mai su ticket di clienti. Il sandbox #126257 è chiuso dal 18/10/2026; procedura verificata il 20/10/2026 sul #129863 (Pending, due scritture sommate, stato invariato, nessun commento). Quando si chiude anche quello, crea un ticket nuovo con quel tag.
 
 ## Casi Zendesk particolari
 

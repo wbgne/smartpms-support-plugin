@@ -38,6 +38,12 @@ Regole operative valide per tutti gli agenti, da leggere su ogni ticket. Le proc
 - Se nessuna opzione ha senso, proponi nome e value di una nuova opzione e creala con `ZENDESK_CREATE_TICKET_FIELD_OPTION` **solo dopo un sì esplicito**: è configurazione condivisa.
 - La connessione Composio Zendesk ha già i permessi necessari: non servono credenziali e non vanno mai usate password lette da file.
 
+## Tempo lavorato (su ogni ticket)
+
+- A fine gestione di ogni ticket **somma il tempo che Claude ci ha lavorato** in questa sessione al campo **Total time spent (sec)** (`13890878396828`) e scrivi gli stessi secondi in **Time spent last update (sec)** (`13890878400668`). Mai sovrascrivere il totale esistente.
+- È l'ultima scrittura sul ticket, una volta sola per sessione, con una update di **soli campi** (nessun commento né nota interna, che riaprirebbe il ticket). Non serve conferma; oltre i 120 minuti totali fermati e chiedi. Sui ticket chiusi non si scrive: segnalalo.
+- Calcolo, lettura e scrittura in `azioni.md` ("Tempo lavorato su Zendesk").
+
 ## Chi se ne occupa: L1, L2, Jira o feature request?
 
 - **Escalation L2** solo per dati rotti o per un comportamento che contraddice il codice o la documentazione. Le verifiche che l'agente può fare da solo restano a L1 (es. esito di consegna di un'email in Intool, Email > Events).
