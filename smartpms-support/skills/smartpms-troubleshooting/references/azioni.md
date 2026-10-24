@@ -80,12 +80,33 @@ Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo fi
 ## Aggiornamenti Payload
 
 - I fatti di prodotto vanno solo in Payload, mai nel plugin. Decidi tu se aggiornare un documento esistente o crearne uno nuovo (SKILL.md, passo 9).
-- **Non sempre resta una bozza.** Dopo ogni scrittura MCP il server ricalcola la certezza del documento: con **8 o più** il documento va **online subito** (sul sito pubblico, se è una guida pubblica); sotto 8 resta in bozza e Alessandro lo rilegge e pubblica. Vale anche per `addFaq` e `addDomandaAperta`.
+- **Non sempre resta una bozza.** Dopo ogni scrittura MCP il server ricalcola la certezza del documento: con **8 o più** il documento va **online subito** (sul sito pubblico, se è una guida pubblica); sotto 8 resta in bozza e Alessandro lo rilegge e pubblica, con il ticket di conferma descritto sotto. Vale anche per `addFaq` e `addDomandaAperta`.
 - Prima di proporre la scrittura leggi la `certezza` del documento in `searchDocs` / `getDoc`. Se è 8 o più, nella proposta scrivi che **va online subito** e non chiamarla "bozza", anche se l'agente la chiama così. Avvisa **prima** della scrittura, non dopo.
 - La certezza bassa di una singola FAQ o di un caso noto (es. fonte `ticketNonConfermato`) non impedisce la pubblicazione: conta la certezza del documento. Chiedi conferma prima di ogni scrittura.
 - `ticketConfermato` solo se il cliente ha confermato esplicitamente che la soluzione ha funzionato; altrimenti `ticketNonConfermato`. `codice` solo se dedotto dal codice. Un elemento nato da un ticket si conferma con lo stesso ticket solo se poi il cliente conferma l'esito.
 - Lo stato di pubblicazione affidabile è quello nella risposta della scrittura (`pubblicazioneAutomatica`): `searchDocs` può mostrare "bozza" anche su documenti pubblicati.
 - Con una chiave Payload su più prodotti passa sempre `prodotto` nelle create (`createPlaybooks`, `createInternalGuides`), altrimenti il server risponde "Moduli inesistenti".
+
+### Ticket per la conferma di Alessandro
+
+- Quando una scrittura Payload resta in bozza (`pubblicazioneAutomatica` falso nella risposta), Alessandro deve confermarla: apri un **ticket Zendesk dedicato**, separato dal ticket del cliente, che finisce nella vista **"Customer Support⛑️::Smartpms L2 Payload Changes"** (view ID `31287553259676`). Se la certezza letta prima della scrittura è sotto 8, nella proposta Payload scrivi anche che aprirai il ticket: il sì dell'agente vale per entrambe le scritture. Aprilo solo se la risposta della scrittura conferma la bozza.
+- La vista mostra solo i ticket con **tutte** queste condizioni: brand Smartpms (`16653484213276`), gruppo **Smartpms L2 Support** (`group_id: 16756021180700`), stato Nuovo o Aperto, tag **`l2_payload_change`**. **Servono sia il tag sia il gruppo**: se ne manca uno il ticket non compare. La vista generica "Customer Support⛑️::Smartpms Level 2" (`16756026723228`) esclude quel tag, quindi questi ticket si vedono solo nella vista nuova.
+- **Il tag `l2_payload_change` si usa solo per le modifiche Payload da far confermare ad Alessandro**: mai sui ticket dei clienti, sui figli delle side conversation o su altre escalation, che sparirebbero dalla vista L2 generica. Il ticket del cliente segue il suo flusso normale, senza tag e senza cambio di gruppo.
+- **Creazione**: POST `https://smartness.zendesk.com/api/v2/tickets.json` via `proxy_execute`, senza `status` e senza assegnatario (il ticket resta Nuovo):
+  ```json
+  {"ticket": {
+    "subject": "Payload: conferma modifica <chiave del documento>",
+    "brand_id": 16653484213276,
+    "group_id": 16756021180700,
+    "tags": ["l2_payload_change"],
+    "requester_id": <agente>,
+    "comment": {"html_body": "...", "public": false}
+  }}
+  ```
+  Nel commento (`html_body` formattato come per L2): tipo e chiave del documento, cosa è stato scritto (elemento e testo), certezza dopo la scrittura, `fonte`, ticket del cliente da cui nasce, cosa deve confermare Alessandro.
+- **Un ticket per documento.** Prima di crearlo leggi la vista (GET `/api/v2/views/31287553259676/tickets.json`; la ricerca Zendesk restituisce dati in ritardo): se c'è già un ticket per lo stesso documento, aggiornalo con una nota interna sulla nuova modifica invece di aprirne un altro. Nella PUT passa `additional_tags: ["l2_payload_change"]` e `group_id: 16756021180700`, mai `tags`, che sostituisce tutti i tag del ticket. La nota porta il ticket ad Aperto ("Private Note Re-open"): qui va bene, non rimettere lo stato precedente.
+- **Stato**: solo Nuovo o Aperto, mai Pending, Pending Internal o On-hold. Se il ticket passa poi a In attesa o In sospeso esce dalla vista: è voluto, non correggerlo.
+- **Verifica**: dopo creazione o aggiornamento rileggi il ticket e controlla brand, gruppo, tag e stato. Se un trigger (es. "CiaoBooking re-alignment") ha cambiato brand o gruppo, correggili con PUT mandando `brand_id` e `group_id` nella stessa update. Riporta il numero del ticket nel resoconto finale.
 
 ## HubSpot
 
