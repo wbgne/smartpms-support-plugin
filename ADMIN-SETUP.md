@@ -78,7 +78,7 @@ Colleagues propose changes with pull requests from their own fork (`CONTRIBUTING
 The push goes to `wbgne` over HTTPS with that account's `gh` login (a credential helper set only in this repo's `.git/config`; the SSH key on this Mac belongs to `wbgne59100`). Clients pick the change up at their next app start. Before pushing, validate:
 
 ```bash
-"/Users/wbgne/Library/Application Support/Claude/claude-code/2.1.295/9d6405864fdc/claude.app/Contents/MacOS/claude" plugin validate .
+cd "/Users/wbgne/Projects/MCP Brainrot/plugins" && "$(ls -d "$HOME/Library/Application Support/Claude/claude-code/"*/*/claude.app/Contents/MacOS/claude | tail -1)" plugin validate .
 ```
 
-(The only expected warning is "No version specified": that is intentional.)
+(The path picks the app's installed `claude`, whose version folder changes with every app update. Run it from `plugins/`: elsewhere it validates the wrong folder. The only expected warning is "No version specified": that is intentional.)
