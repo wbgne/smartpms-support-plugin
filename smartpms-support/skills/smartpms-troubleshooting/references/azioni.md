@@ -1,6 +1,6 @@
 # Azioni del team Support SmartPMS
 
-Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo file prima di** creare una side conversation (L2, Finance, Activations, Smartpricing, Octorate), aprire un'issue Jira, pubblicare una feature request o scrivere a un collega su Slack, scrivere in Payload o su HubSpot, aggiornare il tempo lavorato del ticket, o gestire uno dei casi Zendesk particolari in fondo. Le regole sempre valide sono in `team-rules.md`.
+Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo file prima di** creare una side conversation (L2, Finance, Activations, Smartpricing, Octorate), aprire un'issue Jira, pubblicare una feature request o scrivere a un collega su Slack, segnare un errore di Davide (Pluno), scrivere in Payload o su HubSpot, aggiornare il tempo lavorato del ticket, o gestire uno dei casi Zendesk particolari in fondo. Le regole sempre valide sono in `team-rules.md`.
 
 ## Escalation L2 = side conversation
 
@@ -70,6 +70,21 @@ Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo fi
   - Esito: una riga `OK` per messaggio. Lo script si ferma al primo errore e stampa la risposta di Slack (`not_in_channel` = invitare il bot nel canale; `channel_not_found` = mettere l'ID del canale in `SLACK_CHANNEL`; `invalid_auth` = token scaduto o revocato: avvisa il responsabile del supporto, che lo ruota e aggiorna 1Password; poi l'agente risalva il file).
   - **Non rieseguire lo script dopo un successo**: non è idempotente e duplica i messaggi.
   - Dopo la pubblicazione imposta Category `feature_requests`.
+
+## Errori del virtual agent nel foglio Pluno
+
+- Quando Davide (Pluno) ha sbagliato su un ticket (regola in `team-rules.md`), aggiungi una riga al foglio **"Pluno Responses to Fix"**, tab "Pluno Fixes". **Non serve la conferma del testo**: scrivi e riporta la riga nel resoconto finale. Chiedi solo se non è chiaro che Davide abbia sbagliato.
+- Si scrive come il service account `copilot-sheets@smartness-internal-tools.iam.gserviceaccount.com`, impersonato con gcloud (nessuna chiave), con lo script della skill:
+  ```bash
+  python3 "${CLAUDE_SKILL_DIR}/scripts/pluno-fix.py" --opzioni
+  python3 "${CLAUDE_SKILL_DIR}/scripts/pluno-fix.py" --ticket 129686 --reporter "<nome nel menu Reporter>" \
+    "Davide ha detto al cliente di … Doveva …"
+  ```
+  - `--opzioni` stampa i valori dei menu Brand e Reporter: usa per **Reporter** il nome dell'agente così come compare lì. **Brand** è `Smartpms` di default (`--brand` per cambiarlo).
+  - Il testo è l'**Expected Outcome**: cosa ha detto o fatto Davide, perché è sbagliato e cosa doveva fare (es. passare il ticket al Support), senza dati personali del cliente. In italiano.
+  - Lo script mette il link del ticket, il mese in colonna A solo sulla prima riga del mese e lascia **Status** vuoto. Se il ticket è già nel foglio si ferma senza scrivere: non duplicare. `--dry-run` mostra la riga senza scriverla.
+  - Esito: `OK riga N` con i valori riletti dal foglio. **Non rieseguire dopo un OK.**
+- Errori: "login gcloud scaduto" → l'agente esegue `gcloud auth login` in un terminale (non puoi farlo tu: è interattivo); "non può impersonare" → l'agente non è nel gruppo `cs-team@smartpricing.it`, avvisa il responsabile del supporto; "gcloud non è installato" → passo 5 del setup nel README del plugin. In questi casi mostra la riga (Brand, Reporter, Link, Expected Outcome) nel messaggio finale e l'agente la incolla a mano.
 
 ## Messaggi ai colleghi su Slack
 

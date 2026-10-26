@@ -31,6 +31,14 @@ Le regole del team (stati, campi CB, escalation, feature request, politiche vers
    ```bash
    { [ -n "$SLACK_BOT_TOKEN" ] || [ -f ~/.config/smartpms/slack.env ]; } && echo "token presente" || echo "token mancante"
    ```
+5. **gcloud** per segnare gli errori di Davide (Pluno) nel foglio "Pluno Responses to Fix": Claude scrive come il service account del Support Copilot, senza chiavi, usando il tuo login Google. Serve essere nel gruppo `cs-team@smartpricing.it`. Installa la Google Cloud CLI ([guida](https://cloud.google.com/sdk/docs/install)) e accedi con il tuo account @smartpricing.it:
+   ```bash
+   gcloud auth login
+   ```
+   Il login scade ogni tanto: quando Claude ti dice "login gcloud scaduto", rilancia lo stesso comando. Verifica (stampa i menu del foglio, non scrive nulla):
+   ```bash
+   python3 ~/.claude/plugins/marketplaces/*/smartpms-support/skills/smartpms-troubleshooting/scripts/pluno-fix.py --opzioni
+   ```
 
 ## Come si lavora
 

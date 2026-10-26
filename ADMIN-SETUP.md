@@ -62,6 +62,14 @@ The feature-request script reads `SLACK_BOT_TOKEN` from the environment first, t
 - If someone leaves the team or the token leaks: rotate it in Slack, update both 1Password items (Shared and Support copilot) and the managed setting if used, and tell agents to update their file.
 - Check on a machine without printing it: `[ -n "$SLACK_BOT_TOKEN" ] || [ -f ~/.config/smartpms/slack.env ] && echo ok`.
 
+## C. Pluno sheet (Google, keyless)
+
+`scripts/pluno-fix.py` appends rows to "Pluno Responses to Fix" as `copilot-sheets@smartness-internal-tools.iam.gserviceaccount.com`, the Support Copilot's sheets SA, through gcloud impersonation. There is no key file, by cybersecurity's choice.
+
+- Who can write: members of the Google group `cs-team@smartpricing.it`, which holds `roles/iam.serviceAccountTokenCreator` on that SA (`smartpricing/iac`, `terraform/infra/support-copilot`, resource `cs_team_sheets_token_creator`; changes go through Luigi Papalia, who applies them). Adding or removing an agent = changing the group membership.
+- The sheet must stay shared with the SA as **Editor**. If the script says "non ha accesso al foglio", that share is missing.
+- Each agent installs gcloud and runs `gcloud auth login` (plugin README, setup step 5).
+
 ## Releasing a change
 
 ```bash
