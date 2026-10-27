@@ -30,6 +30,7 @@ Regole operative valide per tutti gli agenti, da leggere su ogni ticket. Le proc
 - **Con L2 di mezzo** (nota su un figlio L2, o padre con escalation aperta) lo stato da rimettere è sempre **Pending Internal**, non Aperto e non Pending semplice, anche quando la nota passa la palla a L2.
 - Una nota sul figlio L2 riapre **anche il padre**: rimetti lo stato al padre **dopo** la nota sul figlio e verifica entrambi.
 - Riaprono il ticket anche le note automatiche di Pluno ("Update from Jira") e il **merge** (`ZENDESK_MERGE_ZENDESK_TICKETS` è asincrono: aspetta la fine del job, poi rimetti lo stato al ticket di destinazione).
+- Riapre il padre anche ogni **messaggio inviato in una side conversation** (POST `.../side_conversations/{id}/reply`, trigger "Side conversation is updated"), per esempio a un partner esterno come l'onboarding VRBO. Lo stato cambia qualche secondo dopo l'invio: imposta lo stato del padre **dopo** il messaggio, anche se l'avevi già messo prima, e verificalo.
 
 ## Campi obbligatori (su ogni ticket)
 
