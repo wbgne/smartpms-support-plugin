@@ -11,7 +11,7 @@ The guidance below was distilled from real client replies written by the team (m
 
 ## How we write
 
-- **Open with the person, not the problem.** "Ciao [Nome], come stai?" / "Hi [Name]!" even mid-troubleshooting. If the client is upset or the case is urgent (a fine, a deadline, lost bookings), just "Ciao [Nome]," / "Hi [Name],": no "come stai?".
+- **Open with the person, not the problem.** "Ciao [Nome], come stai?" / "Hi [Name]!" even mid-troubleshooting. If the client is upset or the case is urgent (a fine, a deadline, lost bookings), just "Ciao [Nome]," / "Hi [Name],": no "come stai?". Never add a title the person doesn't use themselves (Dottoressa, Dott., Ing., Avv.): if their signature has none, use their first name, also for public offices in copy.
 - **Apologize once, then act.** When there's been an inconvenience, one short sincere line ("Scusa per il disagio", "Mi dispiace per il disservizio"), then straight into what we're doing about it. Never stack apologies.
 - **Say what you did, in first person, concretely.** A lead-in like "Ecco cosa ho fatto per te:" followed by the actual actions ("Ho verificato che...", "Ho forzato manualmente..."). Own the work instead of only pointing at "il team".
 - **Offer to act only where the client can't.** Offer to do a step ourselves only when it matches something the client can't do on their own (e.g. a setting that only we can change from our side). Don't offer to do work the client can do in the gestionale, such as entering guest data or changing their own settings: give them the steps instead.
