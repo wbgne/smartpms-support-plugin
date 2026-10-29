@@ -19,7 +19,7 @@ The guidance below was distilled from real client replies written by the team (m
 - **Use the client's words.** Say "gestionale", not "PMS", and name menus and fields as the client sees them; no internal jargon (logs, tool or table names, internal IDs). Do include the reservation ID or number when it helps the client find the booking.
 - **Be plain about limits.** Say clearly when something is out of our hands ("non riusciamo a verificarlo direttamente dal nostro lato", "I can't guarantee if or when this will be implemented") rather than softening it into a vague promise. Never promise dates, fixes or features we can't confirm.
 - **Ask narrow questions.** When we need information, ask 1 or 2 specific, answerable questions ("Che errore visualizzavano gli ospiti al momento del pagamento? Hai degli screenshot?"), never a vague "fammi sapere".
-- **Close on an active, available note.** "Ti tengo aggiornato/a non appena ho novità", "Resto in attesa, un saluto!", "Rimango a disposizione". Reassurance that we're still on it, not a flat "regards".
+- **Close on an active, available note.** "Ti tengo aggiornato/a non appena ho novità", "Resto in attesa", "Rimango a disposizione". Reassurance that we're still on it, not a flat "regards". The closing line carries no greeting of its own ("un saluto", "a presto"): the sign-off below is the only one.
 - **Rhythm.** Mid-length, matter-of-fact sentences (around 14 words on average), mixing short direct lines with one or two longer explanatory ones. Not clipped, not rambling.
 - **Emoji.** Optional, at most one per message (🙏, 🙂), only on a genuinely appreciative or reassuring beat.
 
@@ -37,7 +37,7 @@ Match gender agreement to the real people involved: the agent's own forms ("lo f
 
 Zendesk converts the reply from Markdown and adds the agent's signature on its own.
 
-- **Sign-off:** end with the active line from above, then "Un cordiale saluto," ("Kind regards," in English) and nothing else. Never write a name, role or contact block: Zendesk appends the agent's signature (name, role, contacts, banner), so it would appear twice.
+- **Sign-off:** end with the active line from above, then "Un cordiale saluto," ("Kind regards," in English, "Mit freundlichen Grüßen," in German) and nothing else. Never write a name, role or contact block: Zendesk appends the agent's signature (name, role, contacts, banner), so it would appear twice.
 - **No numbered lines:** never start a line with "1.", "2.", "3.": Zendesk turns them into one numbered list that restarts at 1 or swallows the bullets below. For steps use "-" bullets or labels like "Passo 1:"; for section titles use a **bold** line on its own, with a blank line before and after. One list type per block.
 - **Steps:** direct imperative verbs (Vai, Clicca, Seleziona, Apri, Controlla / Go to, Click, Select).
 - **Bold** sparingly, only for something the client must not get wrong (e.g. **non eliminare la tariffa**), not for general emphasis.
@@ -45,7 +45,7 @@ Zendesk converts the reply from Markdown and adds the agent's signature on its o
 
 ## Applying the voice
 
-- Match the client's language and the channel (email or chat).
+- Match the client's language and the channel (email or chat). In English or German every word is in that language, menu names included as the client sees them: never "gestionale" or an Italian menu path. Address the client the way they address us: in German "Sie" unless they write "du".
 - Draft in this voice, then check it against "Never" and the Zendesk formatting rules before showing it.
 - Show the full draft in your final chat message. In the Claude desktop app, end the turn with `wrap_up` without `ask`, then write the draft and ask for approval in plain text: with `ask`, the agent sees only the end-of-turn box and never reads the draft. Never leave a draft only in the box or only in a file.
 - If the agent has their own personal writing-style skill, use that for personal quirks and this one for team conventions; when they conflict, this skill wins on formatting and on "Never".

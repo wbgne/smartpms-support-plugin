@@ -74,6 +74,8 @@ Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo fi
 ## Errori del virtual agent nel foglio Pluno
 
 - Quando Davide (Pluno) ha sbagliato su un ticket (regola in `team-rules.md`), aggiungi una riga al foglio **"Pluno Responses to Fix"**, tab "Pluno Fixes". **Non serve la conferma del testo**: scrivi e riporta la riga nel resoconto finale. Chiedi solo se non è chiaro che Davide abbia sbagliato.
+  - È un errore: un'informazione di prodotto sbagliata, una procedura che non funziona, una promessa che il team non può mantenere, un ticket non passato al Support quando doveva.
+  - Non è un errore: una risposta giusta ma incompleta, il testo standard con cui Davide passa il ticket al Support, una richiesta che segue la prassi del team (es. credenziali e OTP Airbnb per un cliente su Octorate). In questi casi niente riga.
 - Si scrive come il service account `copilot-sheets@smartness-internal-tools.iam.gserviceaccount.com`, impersonato con gcloud (nessuna chiave), con lo script della skill:
   ```bash
   python3 "${CLAUDE_SKILL_DIR}/scripts/pluno-fix.py" --opzioni
