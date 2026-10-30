@@ -17,8 +17,8 @@ Le regole del team (stati, campi CB, escalation, feature request, politiche vers
 1. **Installa il plugin** con aggiornamento automatico: aggiungi a `~/.claude/settings.json` il blocco `extraKnownMarketplaces` + `enabledPlugins` che trovi nella sezione A di [ADMIN-SETUP.md](../ADMIN-SETUP.md) (repo pubblico `wbgne/smartpms-support-plugin`, non serve un account GitHub), poi chiudi e riapri l'app. In alternativa, da un terminale `claude`: `/plugin install smartpms-support --marketplace wbgne/smartpms-support-plugin`.
 2. **Attiva i connettori** su claude.ai → Impostazioni → Connettori, accedendo con **il tuo** account:
    - Composio con l'app **Zendesk** (il tuo utente Zendesk)
-   - Smarty MCP (dati live SmartPMS)
-   - Smartness MCP Gateway (codice e ticket analizzati)
+   - MCP Gateway (dati live SmartPMS)
+   - Smarty MCP (codice e ticket analizzati)
    - Payload MCP (documentazione)
    - Atlassian (Jira, progetto CIAOB: ricerca bug esistenti e nuovi bug per gli sviluppatori)
    - HubSpot (task e note, solo in inglese), se lo usi
