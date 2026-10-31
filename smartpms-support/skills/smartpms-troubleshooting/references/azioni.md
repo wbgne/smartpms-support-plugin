@@ -1,6 +1,6 @@
 # Azioni del team Support SmartPMS
 
-Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo file prima di** creare una side conversation (L2, Finance, Activations, Smartpricing, Octorate), aprire un'issue Jira, pubblicare una feature request o scrivere a un collega su Slack, segnare un errore di Davide (Pluno), scrivere in Payload o su HubSpot, aggiornare il tempo lavorato del ticket, o gestire uno dei casi Zendesk particolari in fondo. Le regole sempre valide sono in `team-rules.md`.
+Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo file prima di** creare una side conversation (L2, Finance, Activations, Smartpricing, Octorate), spostare un ticket al team di un altro prodotto, aprire un'issue Jira, pubblicare una feature request o scrivere a un collega su Slack, segnare un errore di Davide (Pluno), scrivere in Payload o su HubSpot, aggiornare il tempo lavorato del ticket, o gestire uno dei casi Zendesk particolari in fondo. Le regole sempre valide sono in `team-rules.md`.
 
 ## Escalation L2 = side conversation
 
@@ -21,10 +21,27 @@ Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo fi
 - **Eccezione: le side conversation verso l'Activations Team** (`support_group_id: 21134523231388`) **restano sempre su Smartpricing**, anche se il padre è Smartpms, perché le attivazioni sono di Smartpricing.
 - Quando correggi il brand, il trigger "[Brand for HS]" allinea da solo il campo custom `23829217684892`: va bene così.
 
-### Temi Smartpricing su un ticket Smartpms
+### Temi di altri prodotti su un ticket Smartpms
 
 - Attivazioni e disattivazioni di Smartpricing, Smartconnect e SmartChat non vanno a Smartpricing L1 ma all'**Activations Team** (`team-rules.md`, "Chi se ne occupa").
-- Se il cliente solleva un altro tema **Smartpricing** (es. competitor disattivati), la parte Smartpms si risponde nel ticket e quella Smartpricing va in **side conversation al gruppo "Smartpricing L1 Support"** (`support_group_id: 17896873237916`), con **il cliente come requester** del ticket figlio, così L1 Smartpricing gli risponde direttamente.
+
+**Nessuna richiesta Smartpms nel ticket: si sposta il ticket intero.** Niente side conversation e niente risposta al cliente, chiunque sia il requester (l'account lo controlla il team che lo riceve).
+
+| Il ticket riguarda | `group_id` | `brand_id` |
+|---|---|---|
+| Smartpricing | Smartpricing L1 `17896873237916` | Smartpricing `13500829701020` |
+| SmartChat | Smartpricing L1 `17896873237916` | Smartchat `21097520438172` |
+| Smartconnect | Smartpricing L1 `17896873237916` | Smartconnect `27513874501020` |
+| Attivazione o disattivazione su uno di questi prodotti | Activations Team `21134523231388` | Smartpricing `13500829701020` |
+
+- Una sola PUT `/api/v2/tickets/{id}.json` con nota interna (`comment` con `public: false`: cosa chiede il cliente, per il team che lo riceve), `assignee_id: null`, `group_id`, `brand_id` e `ticket_form_id: 13500856062620`. Mostra prima la nota all'agente e chiedi conferma. **Brand e gruppo nella stessa update**: se cambi solo il `brand_id` un trigger lo riporta indietro. Il form è quello predefinito, accettato su tutti e tre i brand anche se è riservato a Smartpricing.
+- Controlla nella risposta che gruppo e brand siano quelli mandati (verificato sul ticket 132495). Lo stato non si reimposta e niente Pending Internal: la nota lo porta ad Aperto e ora il ticket è di quel team.
+- Il passaggio all'Activations Team fa scattare il trigger "Add / Remove Units (Activations tag)", che mette il tag `activations` e il topic CB: va bene così.
+
+**C'è anche una richiesta Smartpms: side conversation solo per l'altra parte.** Il ticket resta su Smartpms e la parte Smartpms si risponde nel ticket.
+
+- Attivazioni e disattivazioni: side conversation all'Activations Team (brand in "Brand della side conversation").
+- Un altro tema **Smartpricing, SmartChat o Smartconnect** (es. competitor disattivati) va in **side conversation al gruppo "Smartpricing L1 Support"** (`support_group_id: 17896873237916`), con **il cliente come requester** del ticket figlio, così L1 Smartpricing gli risponde direttamente.
 - Brand del figlio = **Smartpricing** (`13500829701020`), eccezione alla regola "brand del padre". Alla creazione i trigger spostano il figlio su brand Smartpms e gruppo Smartpms L1 (`16743124489628`); se cambi solo il `brand_id` un trigger lo riporta indietro. Funziona solo mandando **`brand_id` 13500829701020 e `group_id` 17896873237916 nella stessa update**.
 - Requester: `data: {requester_id: <cliente>}` (l'organizzazione si allinea da sola). Il figlio è privato: al cliente non arriva nulla finché L1 non risponde in pubblico. Verifica con GET `/api/v2/tickets/{figlio}/audits.json` (la ricerca Zendesk restituisce dati in ritardo). Il padre va in Pending Internal.
 
