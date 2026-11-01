@@ -179,6 +179,14 @@ Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo fi
 - **Verifica**: rileggi il ticket e controlla i due campi e che `status` / `custom_status_id` siano rimasti quelli di prima.
 - **Test** solo su ticket di prova con il tag `copilot_test` e l'agente come requester, mai su ticket di clienti. Il sandbox #126257 è chiuso dal 18/10/2026; procedura verificata il 20/10/2026 sul #129863 (Pending, due scritture sommate, stato invariato, nessun commento). Quando si chiude anche quello, crea un ticket nuovo con quel tag.
 
+## Mancanze dei tool
+
+- Quando durante l'indagine un dato non è esposto dai tool dell'MCP Gateway o di Smarty MCP, oppure un tool ha un errore di descrizione o di logica, apri un ticket in L2 per Alessandro Trezza. **Non serve conferma**: riporta il ticket nel resoconto finale.
+- **Prima cerca i doppioni** con `ZENDESK_SEARCH_ZENDESK`, tra i ticket aperti con oggetto che inizia per `[Tool MCP]`. Se la richiesta esiste già non aprirne un'altra.
+- **Un ticket per ogni mancanza**, separato dal ticket del cliente, che segue il suo flusso normale e non cambia stato. Non è una side conversation.
+- **Creazione**: POST `https://smartness.zendesk.com/api/v2/tickets.json` via `proxy_execute`, senza `status` e senza assegnatario, con brand Smartpms (`16653484213276`), gruppo Smartpms L2 Support (`group_id: 16756021180700`), l'agente come `requester_id`, commento privato e oggetto `[Tool MCP] <dato o tool>`. **Niente tag `l2_payload_change`**: è solo per gli avvisi su Payload e farebbe sparire il ticket dalla vista L2 generica.
+- **Testo**: quale tool o dato manca, a cosa serviva, dove l'hai preso nel frattempo e il numero del ticket del cliente, senza dati personali dei clienti.
+
 ## Casi Zendesk particolari
 
 - **Ticket "Conversation with …" ancora assegnati all'agente AI** (assignee `25630294871836`, `support_type: ai_agent`, `group_id` null): non si possono chiudere né riassegnare, né via API (risponde successo ma ignora stato, gruppo e assegnatario) né da UI. Se sono duplicati: Category "Other", Topic "Others:: Duplicate", una nota interna che rimanda al ticket principale, poi lasciali aperti senza altri tentativi.
