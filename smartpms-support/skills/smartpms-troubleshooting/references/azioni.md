@@ -68,13 +68,14 @@ Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo fi
 - Canale **#sall-feature-requests-zendesk**, **una per richiesta**, con il template:
   ```
   Product: Smartpms
-  Ticket ID:
+  Ticket:
   Organization:
   Assignee email:
   Customer email:
   Description:
+  <descrizione, a capo dopo "Description:">
   ```
-  Assignee email = email dell'assegnatario del ticket.
+  I nomi dei campi sono questi e solo questi (non "Ticket ID", non "Assignee"). Assignee email = email dell'assegnatario del ticket.
 - **Non serve la conferma del testo**: pubblica direttamente e riporta il testo nel resoconto finale. Chiedi solo se l'agente non ha ancora deciso se aprire o meno la feature request.
 - Si pubblica con il bot Slack del team tramite lo script `scripts/post-feature-requests.sh` della skill:
   ```bash

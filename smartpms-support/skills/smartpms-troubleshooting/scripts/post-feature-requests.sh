@@ -49,7 +49,7 @@ fi
 CHANNEL="${SLACK_CHANNEL:-sall-feature-requests-zendesk}"
 
 HEADER="Product: Smartpms
-Ticket ID: ${TICKET}
+Ticket: ${TICKET}
 Organization: ${ORG}
 Assignee email: ${ASSIGNEE}
 Customer email: ${CUSTOMER}"
@@ -76,7 +76,8 @@ count=0
 for desc in "$@"; do
   printf 'Invio feature request... '
   post "${HEADER}
-Description: ${desc}"
+Description:
+${desc}"
   count=$((count + 1))
   sleep 1  # limite Slack ~1 messaggio/secondo
 done
