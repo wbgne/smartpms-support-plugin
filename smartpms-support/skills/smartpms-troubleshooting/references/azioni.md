@@ -56,6 +56,14 @@ Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo fi
 - Contenuto: alloggio Octorate, hotel ID del portale, ID prenotazione Octorate e codice OTA, data della modifica sul portale, `status`/`cancelledBy`/`cancelledTime` letti in Octorate, orario di arrivo nel PMS (UTC). Chiedi se il portale ha inviato la modifica e cosa ha generato lo stato attuale. `html_body` formattato come per L2.
 - Il ticket va in **Pending Internal**. Al cliente non si nomina Octorate ("il collegamento con Expedia", "il fornitore del collegamento"); gli si dice se la disponibilità è già riallineata e gli si chiede, se serve, chi ha fatto la modifica sul portale.
 
+### Migrazione Airbnb da Octorate a SmartChannel: import delle prenotazioni
+
+- **Dopo ogni migrazione** di annunci Airbnb da Octorate a SmartChannel si importano le prenotazioni future su **ogni connessione migrata** del cliente, comprese quelle delle altre aziende migrate insieme. Senza l'import, modifiche e cancellazioni delle prenotazioni arrivate prima del passaggio non raggiungono il PMS (caso noto nel playbook Payload `octorate-cancellazione-ota-non-recepita-pms`).
+- Vale anche quando un ticket rivela che la migrazione è stata fatta senza import: si importa su tutte le connessioni del cliente, non solo su quella del ticket (#132588).
+- **Come**: su SmartChannel (manage.smartness.com) apri la connessione > Azioni > Importa contenuti > seleziona solo **Prenotazioni**, lascia attivo "Importa solo da camere mappate", intervallo check-in da oggi a fine 2028 > Importa. In Operazioni il task `pull-content` deve risultare SUCCESS. È una scrittura in produzione: chiedi conferma all'agente prima di lanciarla, partendo da una connessione e poi le altre.
+- **Verifica** per ogni struttura con `smartpms_list_reservations` (`date_type` `created_at`, data di oggi): prenotazioni nuove = prenotazioni Airbnb mai arrivate al PMS, da confrontare con il cliente; controlla che non ci siano doppioni.
+- **Al cliente** non si presenta come un errore: si dice che dopo il passaggio al nuovo channel manager è stata fatta una risincronizzazione completa delle prenotazioni Airbnb e che sono allineate con il gestionale.
+
 ## Bug per gli sviluppatori = Jira CIAOB
 
 - La side conversation serve per passare da L1 a L2. Quando un ticket è già in L2 (es. il figlio di una side conversation) e serve la correzione degli sviluppatori, si apre un **Bug** in Jira, progetto **CIAOB** ("Smartpms", issue type Bug id `10004`), con il connettore Atlassian (sito smartpricing-it.atlassian.net, cloudId `75d58419-ef23-4a75-a2ce-72550efcdca4`). Obbligatorio solo il summary; priorità e label (`backend`, `mychannel`…) facoltative.
