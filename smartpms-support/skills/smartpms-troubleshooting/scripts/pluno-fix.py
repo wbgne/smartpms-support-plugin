@@ -24,7 +24,7 @@ import urllib.request
 
 SHEET_ID = os.environ.get("PLUNO_SHEET_ID", "1xAFFNCZ0IbpBQ30gey31BMYrTjW-v1aGS0jqsW7jBxY")
 TAB = "Pluno Fixes"
-SA = "copilot-sheets@smartness-internal-tools.iam.gserviceaccount.com"
+SA = "copilot-sheets@smartness-prod.iam.gserviceaccount.com"
 API = f"https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}"
 MESI = ["GENNAIO", "FEBBRAIO", "MARZO", "APRILE", "MAGGIO", "GIUGNO",
         "LUGLIO", "AGOSTO", "SETTEMBRE", "OTTOBRE", "NOVEMBRE", "DICEMBRE"]

@@ -64,7 +64,7 @@ The feature-request script reads `SLACK_BOT_TOKEN` from the environment first, t
 
 ## C. Pluno sheet (Google, keyless)
 
-`scripts/pluno-fix.py` appends rows to "Pluno Responses to Fix" as `copilot-sheets@smartness-internal-tools.iam.gserviceaccount.com`, the Support Copilot's sheets SA, through gcloud impersonation. There is no key file, by cybersecurity's choice.
+`scripts/pluno-fix.py` appends rows to "Pluno Responses to Fix" as `copilot-sheets@smartness-prod.iam.gserviceaccount.com`, the Support Copilot's sheets SA, through gcloud impersonation. There is no key file, by cybersecurity's choice.
 
 - Who can write: members of the Google group `cs-team@smartpricing.it`, which holds `roles/iam.serviceAccountTokenCreator` on that SA (`smartpricing/iac`, `terraform/infra/support-copilot`, resource `cs_team_sheets_token_creator`; changes go through Luigi Papalia, who applies them). Adding or removing an agent = changing the group membership.
 - The sheet must stay shared with the SA as **Editor**. If the script says "non ha accesso al foglio", that share is missing.
