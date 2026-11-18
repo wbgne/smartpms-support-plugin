@@ -48,7 +48,7 @@ Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo fi
 ### Attivazione HRS per strutture su Octorate
 
 - Non si fa al telefono: side conversation email a **reseller@octorate.com** dal ticket, con ID Octorate della struttura e HRS hotel ID. Poi il ticket va in Pending Internal.
-- Il cliente deve chiedere lui a HRS la connessione al channel manager Octorate: è l'unico punto in cui al cliente si nomina Octorate. Per il resto resta vago ("the activation has to be requested through our channel connection, we take care of it"). La mappatura camere/tariffe HRS la fa il Support dopo l'attivazione. Guida Payload: `ota-hrs-octorate-attivazione`.
+- Il cliente deve chiedere lui a HRS la connessione al channel manager Octorate: è l'unico punto in cui al cliente si nomina Octorate, oltre all'incidente e al phishing Octorate (`team-rules.md`, "Migrazione da Octorate"), dove Octorate si nomina perché al cliente va la sua comunicazione ufficiale. Per il resto resta vago ("the activation has to be requested through our channel connection, we take care of it"). La mappatura camere/tariffe HRS la fa il Support dopo l'attivazione. Guida Payload: `ota-hrs-octorate-attivazione`.
 
 ### Prenotazioni o cancellazioni OTA mai arrivate a Octorate
 
