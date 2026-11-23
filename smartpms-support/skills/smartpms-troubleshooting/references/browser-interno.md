@@ -1,6 +1,6 @@
-# Strumenti interni nel browser integrato
+# Strumenti interni nel browser
 
-Valgono solo se l'agente ha una sessione attiva nel browser integrato (`mcp__Claude_Browser__*`). Se non c'è, non aprirla e non chiedere credenziali: usa i tool dell'MCP Gateway. Tutto in **sola lettura**: mai salvare, modificare, rigenerare o inviare senza conferma esplicita; non ripetere in chat i numeri di documento degli ospiti.
+Valgono se l'agente ha una sessione attiva in Claude in Chrome (`mcp__claude-in-chrome__*`, da preferire: di solito le sessioni dell'agente su PMS, SmartChannel e Intool sono lì) o nel browser integrato (`mcp__Claude_Browser__*`). Le tecniche qui sotto valgono uguali nei due browser. Se non c'è nessuna sessione, non aprirla e non chiedere credenziali: usa i tool dell'MCP Gateway. Le verifiche le fai tu senza chiederle all'agente; mai salvare, modificare, rigenerare o inviare senza conferma esplicita; non ripetere in chat i numeri di documento degli ospiti.
 
 Come si usano il PMS con l'utenza superadmin e la console SmartChannel (pagina prenotazione in sola lettura, modifica dalla barra di ricerca, ricerca per codice canale, Pagamenti OTA, JSON grezzo, Diagnostica, Registro attività) è nelle guide interne Payload `prenotazioni-superadmin-consultazione-modifica` e `smartchannel-console-prenotazioni-diagnostica-registro`. Qui restano solo le tecniche per Claude.
 

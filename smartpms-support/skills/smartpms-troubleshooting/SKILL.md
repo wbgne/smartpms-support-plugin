@@ -9,7 +9,9 @@ Obiettivo: spiegare **perché** è successo, con evidenze (dati + codice + doc),
 
 **Prima di iniziare leggi `references/team-rules.md`** (in `${CLAUDE_SKILL_DIR}/references/`): regole del team su risposte, stati, campi CB, escalation L2, feature request, politiche verso il cliente.
 
-I **fatti di prodotto** (comportamenti del PMS, del channel manager, di SmartPay, casi noti e bug aperti) sono in **Payload**, non in questa skill: li trovi con `searchDocs` (passo 6). Se usi il PMS superadmin nel browser integrato leggi anche `references/browser-interno.md` (non serve per aprire gli allegati Zendesk).
+I **fatti di prodotto** (comportamenti del PMS, del channel manager, di SmartPay, casi noti e bug aperti) sono in **Payload**, non in questa skill: li trovi con `searchDocs` (passo 6). Se usi il browser (PMS superadmin, SmartChannel, Intool) leggi anche `references/browser-interno.md` (non serve per aprire gli allegati Zendesk).
+
+**Controlli nel browser: li fai tu.** Se nella sessione hai Claude in Chrome (`mcp__claude-in-chrome__*`) o il browser integrato con le sessioni dell'agente, ogni verifica che serve al ticket su PMS superadmin (https://pms.smartness.com), SmartChannel (https://manage.smartness.com) e Intool (pms-intool.smartness.com) la fai tu, senza chiederla all'agente: stato e operazioni di una connessione, prenotazioni sul channel manager, Email > Events, esiti SdI e simili. All'agente chiedi conferma solo per le scritture.
 
 "L'agente" è la persona che usa la sessione: ricava il suo ID e la sua email con `ZENDESK_GET_ABOUT_ME`. Non usare mai l'ID di un altro agente.
 
@@ -95,7 +97,7 @@ Se la risorsa è cambiata nel frattempo il token viene rifiutato: rifai il `prep
 - Alloggiati: guarda `police_in_status` (e `stat_in_status` per l'ISTAT) della richiesta di check-in, non lo `status` aggregato, che avanza anche con l'invio ISTAT automatico.
 - `smartpms_list_company_documents` si ferma a 100 documenti al giorno: per i giorni pieni usa il filtro Errore nella lista del PMS.
 - `search_code` con il filtro `repository` spesso fallisce (`repository_outside_configured_scope` o zero risultati): cerca senza filtro.
-- Email agli ospiti: `is_sent` vero in `smartpms_diagnose_guest_messages` vuol dire che il nostro provider ha accettato l'email, non che è stata consegnata. L'esito di consegna (risposta SMTP del server del destinatario, Message-ID) lo legge l'agente in Intool, Email > Events: chiediglielo, niente L2 (playbook Payload `messaggi-email-ospite-non-ricevuta-verifica-consegna`).
+- Email agli ospiti: `is_sent` vero in `smartpms_diagnose_guest_messages` vuol dire che il nostro provider ha accettato l'email, non che è stata consegnata. L'esito di consegna (risposta SMTP del server del destinatario, Message-ID) si legge in Intool, Email > Events: leggilo tu dal browser se hai la sessione dell'agente, altrimenti chiediglielo; niente L2 (playbook Payload `messaggi-email-ospite-non-ricevuta-verifica-consegna`).
 - Tipi di template messaggi (`ConstMessageTemplateTypes`): pianificati 3, 4, 5, 10, 11, 13; a evento 1, 2, 6, 7, 8, 9, 12, 14.
 - `pin` e `nuki_smart_lock_auth_id` null sulla prenotazione e finestra `active_from/until` null sui meta IoT precedenti al 07/10/2026 non provano nulla. La meta `smart_iot_locks` si legge con include `meta`; PIN nella meta ma non sul lucchetto = bug CIAOB-2841, niente L2 (playbook Payload `iot-rigenerazione-manuale-pin-accesso`).
 - Errori di descrizione o di logica dei tool dell'MCP Gateway o di Smarty MCP, e dati che i tool non espongono: durante l'indagine apri tu un ticket in L2 per Alessandro Trezza, senza chiedere conferma (`references/azioni.md`, "Mancanze dei tool"). Nel frattempo prendi il dato dalla console in sola lettura (`references/browser-interno.md`).
