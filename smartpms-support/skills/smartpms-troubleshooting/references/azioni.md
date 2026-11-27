@@ -164,6 +164,8 @@ Regole di dettaglio per agire fuori dalla risposta al cliente. **Leggi questo fi
 
 - Tutto ciò che si scrive su HubSpot (task, note, descrizioni) va **in inglese**, fin dalla prima bozza.
 - Le **contestazioni di fattura** dei clienti si gestiscono con un task all'account manager sulla company HubSpot del cliente, non con una side conversation al Finance.
+- **A chi va la segnalazione** (task HubSpot, ma anche il DM Slack per una diffida): di regola all'**account manager** della company (campo Account Manager). Se il cliente è **ancora in onboarding**, cioè sulla company c'è un ticket di onboarding ("Product (OB)") senza data di chiusura, va invece al **sales**, il proprietario della company (Company owner): l'account manager lo segue solo dopo l'onboarding. Vale anche per una disdetta arrivata durante l'onboarding (Claudia Marotta, 16/11/2026).
+- **SmartPay**: ogni segnalazione che riguarda SmartPay va anche a **Federico Di Mella**, oltre all'account manager (o al sales): mettilo in copia. Vale anche quando il cliente SmartPay non lo vuole e chiede un altro modo per incassare le carte (es. il POS della sua banca, #135757).
 
 ## Tempo lavorato su Zendesk
 
